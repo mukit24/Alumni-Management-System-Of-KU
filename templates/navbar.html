@@ -33,7 +33,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="accountDropdown">
               {% if request.user.is_authenticated %}
-              <li><a class="dropdown-item text-success" href="">{{request.user}}</a></li>
+              <li><a class="dropdown-item text-success" href="{% url 'profile' request.user.id %}">{{request.user}}</a></li>
               <li><a class="dropdown-item text-danger" href="{% url 'account_logout'%}">Logout</a></li>
               {% else %}
               <li><a class="dropdown-item text-success" href="{% url 'account_login'%}">Login</a></li>
