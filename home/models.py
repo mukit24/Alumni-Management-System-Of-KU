@@ -30,8 +30,8 @@ class Alumni_Profile(models.Model):
 
     #Table Feilds
     full_name = models.CharField(max_length=255)
-    image = models.FileField(upload_to='uploads/')
-    certificate = models.FileField(upload_to='uploads/')
+    image = models.FileField(upload_to='profile_pic/')
+    certificate = models.FileField(upload_to='certificate/')
     discipline = models.CharField(max_length=255,choices=Discipline_Choices)
     student_id = models.CharField(max_length=10)
     batch = models.CharField(max_length=50,choices=Batch_Choices)
@@ -48,7 +48,7 @@ class Alumni_Profile(models.Model):
     about_me = models.TextField()
     is_verified = models.BooleanField(default=False)
     # ask_for_update_certificate = models.BooleanField(default=False)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="alumni")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="alumni_profile")
 
     def __str__(self):
-        return self.user.username
+        return self.full_name
