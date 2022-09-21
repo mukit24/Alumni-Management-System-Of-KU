@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center p-4">
+    <div class="col-lg-7">
+        <h2>Update Your Profile</h2>
+        <form action={% url 'home:update_profile' request.user.id %} method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <button class='btn btn-success'>Update</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
