@@ -52,3 +52,10 @@ class Alumni_Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    # def save(self):
+    #     old = Alumni_Profile.objects.get(id = self.pk)
+    #     temp = old.is_verified
+    #     if temp == False and self.is_verified == True:
+    #         print('yyyyyy')
+    #     super(Alumni_Profile, self).save()

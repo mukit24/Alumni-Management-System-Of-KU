@@ -1,10 +1,9 @@
 from audioop import reverse
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView
 from home.models import Alumni_Profile
 from .forms import ProfileForm
 
-# Create your views here.
 class HomePageView(TemplateView):
     template_name='home/home.html'
 
