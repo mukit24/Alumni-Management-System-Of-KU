@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for event in  event_list %}
-<p>{{event.headline}}</p>
-{% endfor %}
-{% for event in  closed_events %}
-<p>{{event.headline}}</p>
-{% endfor %}
+<h3 class='header text-success'>Charity Events</h3>
+<div class="row">
+    {% for event in event_list %}
+        <div class="col-sm-4 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h6>{{event.headline}}</h6>
+                    <p>{{event.description| slice:":40"}}...</p>
+                    <p>Target Amount: <span class="text-info fw-bold">{{event.target_amount}} Taka</span> </p>
+                    <p>Present Amount: <span class="text-success fw-bold">{{event.present_amount}} Taka</span></p>
+                    {% if event.running %}
+                    <a href={% url 'charity_events:detail_view' event.id %}><button class='btn btn-primary btn-sm'><i class='fa fa-money'></i> Contritubte</button></a>
+                    <button class='btn btn-success btn-sm'><i class='fa fa-clock-o'></i> Running</button>
+                    {% else %}
+                    <a href={% url 'charity_events:detail_view' event.id %}><button class='btn btn-primary btn-sm'><i class='fa fa-money'></i> Details</button></a>
+                    <button class='btn btn-danger btn-sm'><i class='fa fa-lock'></i> Closed</button>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+    </div>
 {% endblock content %}
