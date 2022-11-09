@@ -22,5 +22,6 @@ urlpatterns = [
     path('',include('home.urls')),
     path('charity-events/',include('charity_events.urls')),
     path('accounts/', include('allauth.urls')),
+    path('admin-utils/',include('admin_utils.urls')),
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
