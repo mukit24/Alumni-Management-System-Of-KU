@@ -13,11 +13,11 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <form action="" method="POST">
+        <form action="{% url 'charity_events:add_money' event.id %}" method="POST">
             {% csrf_token %}
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Enter Amount" aria-describedby="button-addon2">
-                <button class="btn btn-success" type="button" id="button-addon2">Send Money</button>
+                <input name="amount" type="text" class="form-control" placeholder="Enter Amount" aria-describedby="button-addon2" required>
+                <button class="btn btn-success" type="submit" id="button-addon2">Send Money</button>
               </div>      
         </form>
     </div>
@@ -36,8 +36,8 @@
                 <th>Date & Time</th>
             </tr>
         </thead>
-        <tbody style="font-weight: 600;">
-            {% comment %} {% for contributer in contributers %}
+        <tbody>
+            {% for contributer in  event.contributer_set.all %}
             <tr>
                 <td>{{contributer.alumni.full_name}}</td>
                 <td>{{contributer.alumni.discipline}}</td>
@@ -46,7 +46,7 @@
                 <td>{{contributer.amount}}</td>
                 <td>{{contributer.created_on}}</td>
             </tr>
-            {% endfor %} {% endcomment %}
+            {% endfor %} 
         </tbody>
     </table>
 </div>

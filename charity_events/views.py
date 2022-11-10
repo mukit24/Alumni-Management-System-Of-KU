@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView
-from .models import Event
+from .models import Event,Contributer
 # Create your views here.
 class IndexView(ListView):
     model = Event
@@ -10,4 +10,20 @@ class IndexView(ListView):
 class DetailView(DetailView):
     model = Event
     template_name = 'charity_events/details.html'
+
+def add_money(request,id):
+    print(request.POST)
+    amount = int(request.POST['amount'])
+    event = Event.objects.get(id=id)
+    print(amount)
+    if amount:
+        contributer = Contributer(
+            alumni=request.user.alumni_profile,
+            event = event,
+            amount=amount,
+        )
+        contributer.save()
+        event.present_amount += amount
+        event.save()
+    return redirect('charity_events:detail_view', pk=id)
 

@@ -22,8 +22,35 @@
             <td><a href="{{profile.certificate.url}}" download><button class="btn btn-warning btn-sm">Download
                     </button></a></td>
             <td>
-                <button class='btn btn-success btn-sm'>Accept</button>
-                <button class='btn btn-danger btn-sm'>Reject</button>
+                <div class="d-flex justify-content-strat">
+                    <form action="{% url 'admin_utils:op_accept' profile.id %}" method="post">
+                        {% csrf_token %}
+                        <button type='submit' class='btn btn-success btn-sm'>Accept</button>
+                    </form>
+                    <button class='btn btn-danger btn-sm ms-2' data-bs-toggle="modal"
+                        data-bs-target="#rejectModal{{profile.id}}">Reject</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade text-dark" id="rejectModal{{profile.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <form action="{% url 'admin_utils:op_reject' profile.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <label for="message" style="font-size: large;">Message:</label>
+                                    <textarea name="message" id="message" rows="3" class="form-control"></textarea>
+                                    <br>
+                                    <input type="submit" value="Send" class="btn btn-success">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </td>
         </tr>
         {% endfor %}
