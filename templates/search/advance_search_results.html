@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h3 class="header text-secondary">Search Results</h3>
+    {% if profiles %}
+    {% for key,values in profiles.items %}
+    <h5 class='text-success mt-3'>{{values|length}} Result{{ values|pluralize:",s" }} Found In {{key}}:</h5>
+    <div class='table-responsive'>
+        <table class="table table-secondary table-bordered">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Discipline</th>
+                <th>Batch</th>
+                <th>Id</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for profile in values %}
+              <tr>
+                <td>{{profile.full_name}}</td>
+                <td>{{profile.discipline}}</td>
+                <td>{{profile.batch}}</td>
+                <td>{{profile.student_id}}</td>
+                <td><a href={% url 'home:profile_view' profile.user.id %}><button class="btn btn-success btn-sm">Details</button></a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    
+    {% endfor %}
+    {% else %}
+    <h4 class='header text-danger'>Sorry!!! Results Not Found</h4>
+    {% endif %}
+{% endblock content %}

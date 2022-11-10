@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView
 from .models import Event,Contributer
+from django.contrib.auth.decorators import login_required
+from home.decorators import check_profile
 # Create your views here.
 class IndexView(ListView):
     model = Event
@@ -11,6 +13,8 @@ class DetailView(DetailView):
     model = Event
     template_name = 'charity_events/details.html'
 
+@login_required
+@check_profile
 def add_money(request,id):
     print(request.POST)
     amount = int(request.POST['amount'])

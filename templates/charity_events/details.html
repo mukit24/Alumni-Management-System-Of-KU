@@ -11,6 +11,7 @@
 <h5>Target Amount:<span class="text-primary"> {{event.target_amount}} Taka</span></h5>
 <h5>Present Amount:<span class="text-success"> {{event.present_amount}} Taka</span></h5>
 
+{% if event.running %}
 <div class="row">
     <div class="col-sm-4">
         <form action="{% url 'charity_events:add_money' event.id %}" method="POST">
@@ -22,10 +23,11 @@
         </form>
     </div>
 </div>
+{% endif %}
 
 <h3 class="header text-primary">Contributers</h3>
-<div style="overflow-y: auto;">
-    <table class="table table-primary table-hover">
+<div class='table-responsive'>
+    <table class="table table-primary table-bordered">
         <thead>
             <tr>
                 <th>Full Name</th>
