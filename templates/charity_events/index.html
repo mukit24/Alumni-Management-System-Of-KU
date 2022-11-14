@@ -7,7 +7,7 @@
             <div class="card bg-dark text-white">
                 <div class="card-body">
                     <h6>{{event.headline}}</h6>
-                    <p>{{event.description| slice:":40"}}...</p>
+                    <p>{{event.description| slice:40}}...</p>
                     <p>Target Amount: <span class="text-info fw-bold">{{event.target_amount}} Taka</span> </p>
                     <p>Present Amount: <span class="text-success fw-bold">{{event.present_amount}} Taka</span></p>
                     {% if event.running %}

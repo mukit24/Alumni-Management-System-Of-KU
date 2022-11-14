@@ -22,7 +22,9 @@ urlpatterns = [
     path('',include('home.urls')),
     path('charity-events/',include('charity_events.urls')),
     path('search/',include('search.urls')),
+    path('blog/',include('blog.urls')),
     path('accounts/', include('allauth.urls')),
     path('admin-utils/',include('admin_utils.urls')),
     path('admin/', admin.site.urls),
+    path('ckeditor_uploader/',include('ckeditor_uploader.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

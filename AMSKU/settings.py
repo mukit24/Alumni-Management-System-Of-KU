@@ -49,8 +49,19 @@ INSTALLED_APPS = [
 
     'home',
     'charity_events',
+    'blog',
+    'ckeditor',
+    'ckeditor_uploader',
     
 ]
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+'default': {
+    'width': 'auto',
+    },
+}
 
 SITE_ID = 1
 
