@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load social_share %}
+{% block content %}
+<div class="row justify-content-center align-items-center">
+    <div class="col-sm-6">
+        <h6 class='text-primary mt-3'><a class='text-decoration-none' href={% url 'home:profile_view' post.author.user.id %}>{{post.author}}</a> <sub class='text-muted'>{{post.created_on}} </sub></h6>
+        <div class="ps-4">
+            {{post.body|safe}}
+        </div>
+        <button type='button' class='btn btn-secondary btn-sm'>{{post.tag}}</button>
+        <br>
+        <br>
+        {% if request.user == post.author.user %}
+        <button class='btn btn-primary btn-sm' data-bs-toggle="modal"
+        data-bs-target="#editPost"><i class='fa fa-edit'></i> Edit</button>
+        <a href={% url 'blog:delete_post' post.id %}><button class="btn btn-danger btn-sm"><i class='fa fa-trash'></i> Delete</button></a>
+        <div class="modal fade text-dark" id="editPost" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form action={% url 'blog:edit_post' post.id %} method="POST">
+                            {% csrf_token %}
+                            {{form.media}} {{form}}
+                            <input type="submit" value="Update" class="btn btn-success">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="d-flex justify-content-center pt-3">
+            <h6 class='p-1'>Share With</h6>
+            {% post_to_facebook object_or_url "<h5><i class='fa fa-facebook-square text-primary px-1'></i></h5>" %}
+            {% post_to_twitter "Blog about: {{post.tag}}" object_or_url "<h5><i class='fa fa-twitter  px-1'></i><h5>" %}
+            {% post_to_whatsapp object_or_url "<h5><i class='fa fa-whatsapp text-success px-1'></i></h5>" %}
+            {% post_to_telegram "Blog about: {{post.tag}}" object_or_url "<h5><i class='fa fa-telegram  px-1 pe-2'></i></h5>" %}
+            {% post_to_linkedin object_or_url %}
+            
+        </div>
+        <button class='btn btn-dark btn-sm'>Comments <span class='badge bg-light text-dark'>0</span></button>
+    </div>
+</div>
+{% endblock content %}

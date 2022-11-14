@@ -11,7 +11,7 @@ def blog_index(request):
     }
     return render(request, 'blog/index.html',context)
 
-def create_post(reqeust, id):
+def create_post(reqeust):
     if reqeust.method == 'POST':
         form = PostForm(reqeust.POST)
         if form.is_valid():
@@ -20,3 +20,24 @@ def create_post(reqeust, id):
             new_post.save()
             form.save_m2m()
             return redirect('blog:blog_index')
+
+def post_detials(request,id):
+    post = Post.objects.get(id=id)
+    form = PostForm(instance = post)
+    context = {
+        'post':post,
+        'form':form,
+    }
+    return render(request,'blog/detail.html',context)
+
+def edit_post(request,id):
+    post = Post.objects.get(id=id)
+    form = PostForm(request.POST or None,instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('blog:post_details',post.id)
+
+def delete_post(request,id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return redirect('blog:blog_index')
