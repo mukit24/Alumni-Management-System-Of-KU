@@ -53,6 +53,11 @@
             $('input[type=checkbox]').removeClass('form-control');
             $('.errorlist').addClass('text-danger');
         })
+        function reply_comment(name){
+            console.log('yo');
+            var a = document.getElementById('comment_reply');
+            a.value = '@'+name+' ';
+        }
     </script>
 
 </body>

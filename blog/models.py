@@ -18,7 +18,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     author = models.ForeignKey('home.Alumni_Profile',on_delete=models.CASCADE)
-    body = RichTextUploadingField()
+    body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)

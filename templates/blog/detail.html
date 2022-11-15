@@ -32,8 +32,38 @@
             </div>
         </div>
         {% endif %}
+        <button class='btn btn-dark btn-sm'>Comments <span class='badge bg-light text-dark'>{{post.comment_set.count}}</span></button>
+        <div class="py-2">
+        {% for comment in  post.comment_set.all %}
+        <small class='text-primary mt-3'><a class='text-decoration-none' href={% url 'home:profile_view' comment.author.user.id %}>{{comment.author}}</a> <sub class='text-muted'>{{comment.created_on}} </sub></small>
+        <p class='ms-3'>{{comment.body}}</p>
+        <p class="badge bg-secondary p-1"><a href="#comment_reply" onclick="reply_comment('{{comment.author}}')" class='text-decoration-none text-light'>Reply</a></p>
+        {% if request.user == comment.author.user %}
+        <p class="badge bg-primary p-1"><a data-bs-toggle="collapse" href="#collapseEdit{{comment.id}}" role="button" aria-expanded="false" aria-controls="collapseEdit{{comment.id}}" class='text-decoration-none text-light'>Edit</a></p>
+        <p class="badge bg-danger p-1"><a href={% url 'blog:delete_comment' comment.id %} class='text-decoration-none text-light'>Delete</a></p>
+        <div class="collapse" id="collapseEdit{{comment.id}}">
+            <form action={% url 'blog:edit_comment' comment.id %} method="post">
+                {% csrf_token %}
+                <div class="d-flex">  
+                <textarea class="form-control" rows="1" id="comment"
+                            name="comment">{{comment.body}}</textarea>  
+                <button type='submit' class="btn btn-primary btn-sm ms-1">Update</button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        <br>
+        {% endfor %}
+        </div>
+        <form action={% url 'blog:create_comment' post.id %} method="post">
+            {% csrf_token %}
+            <div class="d-flex">
+                {{c_form}}
+            <button type='submit' class="btn btn-success btn-sm ms-1">Comment</button>
+            </div>
+        </form>
         <div class="d-flex justify-content-center pt-3">
-            <h6 class='p-1'>Share With</h6>
+            <h6 class='p-1'>Share The Blog With</h6>
             {% post_to_facebook object_or_url "<h5><i class='fa fa-facebook-square text-primary px-1'></i></h5>" %}
             {% post_to_twitter "Blog about: {{post.tag}}" object_or_url "<h5><i class='fa fa-twitter  px-1'></i><h5>" %}
             {% post_to_whatsapp object_or_url "<h5><i class='fa fa-whatsapp text-success px-1'></i></h5>" %}
@@ -41,7 +71,6 @@
             {% post_to_linkedin object_or_url %}
             
         </div>
-        <button class='btn btn-dark btn-sm'>Comments <span class='badge bg-light text-dark'>0</span></button>
     </div>
 </div>
 {% endblock content %}
