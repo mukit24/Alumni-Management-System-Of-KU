@@ -23,6 +23,7 @@ urlpatterns = [
     path('charity-events/',include('charity_events.urls')),
     path('search/',include('search.urls')),
     path('blog/',include('blog.urls')),
+    path('newsletter/',include('newsletter.urls')),
     path('accounts/', include('allauth.urls')),
     path('admin-utils/',include('admin_utils.urls')),
     path('admin/', admin.site.urls),
