@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from home.models import Alumni_Profile
 from .forms import ProfileForm
+from django.db.models import Q
+from charity_events.models import Event
 
 class HomePageView(TemplateView):
     template_name='home/home.html'
@@ -55,5 +57,37 @@ def update_profile(request, id):
         "form": form
     }
     return render(request, "home/update_profile.html", context)
+
+def discipline_view(request):
+    discipline = request.user.alumni_profile.discipline
+    total_alumni = Alumni_Profile.objects.filter(Q(discipline=discipline) & Q(is_verified=True)).count()
+
+    batch = list(Alumni_Profile.objects.values_list('batch',flat=True).filter(Q(is_verified=True) & Q(discipline=discipline)))
+    batch.sort()
+    batch.insert(0,f'All (in {discipline})')
+
+    events = Event.objects.filter(discipline=discipline)
+    print(events)
+
+    context = {
+        'discipline':discipline,
+        'total_alumni': total_alumni,
+        'batches': batch,
+        'events':events,
+    }
+    return render(request,'home/discipline_view.html',context)
+
+def search_result_discipline(request):
+    batch = request.POST['batch']
+    discipline = request.user.alumni_profile.discipline
+    if batch == f'All (in {discipline})':
+        profiles = Alumni_Profile.objects.filter(Q(is_verified=True) & Q(discipline=discipline))
+    else:
+        profiles = Alumni_Profile.objects.filter(Q(is_verified=True) & Q(discipline=discipline) & Q(batch=batch))
+    context = {
+        'profiles':profiles,
+    }
+    
+    return render(request,"search/search_results.html",context)
 
 

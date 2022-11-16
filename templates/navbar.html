@@ -21,10 +21,11 @@
             Menu
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">CSE</a></li>
+            {% if request.user.alumni_profile %}
+            <li><a class="dropdown-item" href={% url 'home:discipline_view' %}>{{request.user.alumni_profile.discipline}}</a></li>
+            {% endif %}
             <li><a class="dropdown-item" href="{% url 'search:search_view' %}">Search Alumni</a></li>
             <li><a class="dropdown-item" href="{% url 'charity_events:index_view' %}">Charity Events</a></li>
-            <li><a class="dropdown-item" href="#">Alumni Fee</a></li>
             <li><a class="dropdown-item" href="{% url 'blog:blog_index' %}">Blog</a></li>
             <li><a class="dropdown-item" href="{% url 'newsletter:index' current_newsletter.id %}">Newsletter</a></li>
           </ul>

@@ -24,9 +24,29 @@
         <div class="ps-4">
             {{post.body|truncatechars_html:135|safe}}
         </div>
-        <a href={% url 'blog:post_details' post.id %}><button class='btn btn-success btn-sm'>Read More</button></a>
-        <button type='button' class='btn btn-secondary btn-sm'>{{post.tag}}</button>
+        <a href={% url 'blog:post_details' post.id %}><p class='badge bg-success'>Read More</p></a>
+        <p class='badge bg-secondary'>{{post.tag}}</p>
         {% endfor %}
+
+        {% if posts.has_other_pages %}
+        <ul class="pagination justify-content-center mt-2">
+            {% if posts.has_previous %}
+            <li class="page-item"><a class="page-link bg-secondary text-light"
+                    href="?page={{ posts.previous_page_number }}#post_list">Previous</a></li>
+            {% endif %}
+            {% for i in posts.paginator.page_range %}
+            {% if posts.number == i %}
+            <li class="page-item active"><a class="page-link" href="?page={{ i }}#post_list">{{i}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link bg-dark text-light" href="?page={{ i }}#post_list">{{i}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if posts.has_next %}
+            <li class="page-item"><a class="page-link bg-secondary text-light"
+                    href="?page={{ posts.next_page_number }}#post_list">Next</a></li>
+            {% endif %}
+        </ul>
+        {% endif %}
     </div>
 </div>
 

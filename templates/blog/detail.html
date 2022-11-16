@@ -7,7 +7,7 @@
         <div class="ps-4">
             {{post.body|safe}}
         </div>
-        <button type='button' class='btn btn-secondary btn-sm'>{{post.tag}}</button>
+        <p class='badge bg-secondary'>{{post.tag}}</p>
         <br>
         <br>
         {% if request.user == post.author.user %}
