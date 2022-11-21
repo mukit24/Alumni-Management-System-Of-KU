@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+
 <head>
     {% comment %} <style>
-       
-            * {
-                margin: 0;
-                padding: 0;
-                outline: none !important;
-              }
-              
-              body {
-                overflow-x: hidden !important;
-              }
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none !important;
+        }
+
+        body {
+            overflow-x: hidden !important;
+        }
     </style> {% endcomment %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumni Management System OF Khulna University</title>
-    <link rel="stylesheet" href=""{% static 'style.css'%}"">
+    <link rel="stylesheet" href="" {% static 'style.css' %}"">
     <style>
-        .header{
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .header {
             text-align: center;
             padding-bottom: 12px;
         }
-        .main_bg{
+
+        .main_bg {
             background-color: Lavender;
         }
     </style>
     <!--boostrap 5 css link-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     {% include 'navbar.html' %}
     <div class="main_bg">
         <div class="container py-4">
+            {% if request.user.is_authenticated %}
+        <div class="row justify-content-center mb-3">
+            <div class="col-sm-7 text-center" >
+                {% if not request.user.alumni_profile %}
+                <div class="alert alert-danger mb-0" role="alert">
+                    <p class="mb-0"><i class="fa fa-exclamation-triangle"></i> <strong>Profile! </strong><small>For Accessing All Features You Have To Complete Your Profile. <a href="{% url 'home:profile_view' request.user.id %}" class="text-danger">Click Here</a></small></p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
             {% block content %}{% endblock content %}
         </div>
-    
+    {% include 'footer.html' %}
     </div>
-    
+
     <script src="{% static 'main.js'%}"></script>
     <!--boostrap 5 js bundle-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
     <!--Jquery-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function () {
             $('input').addClass('form-control');
             $('input[type=checkbox]').removeClass('form-control');
             $('.errorlist').addClass('text-danger');
         })
-        function reply_comment(name){
+        function reply_comment(name) {
             console.log('yo');
             var a = document.getElementById('comment_reply');
-            a.value = '@'+name+' ';
+            a.value = '@' + name + ' ';
         }
     </script>
 
 </body>
+
 </html>

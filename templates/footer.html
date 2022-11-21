@@ -1,0 +1,15 @@
+{% if not request.user.is_authenticated %}
+<div class="alert alert-dark p-3 mb-0 text-center">
+    <strong class="pe-2">Want To Join Us?</strong>
+    <a href="{% url 'account_signup' %}"><button class="btn btn-primary btn-sm mx-1">Sign Up</button></a>
+    <a href="{% url 'account_login' %}?next={{request.path}}"><button
+            class="btn btn-success btn-sm mx-1">Login</button></a>
+    <a href="{% url 'account_signup' %}"><button class="btn btn-primary btn-sm m-1">Sign Up</button></a>
+</div>
+{% endif %}
+<footer>
+    <div class="footer-copyright text-center text-light bg-dark p-3">
+        © 2021 Copyright:
+        <a href="{% url 'home:home_view'%}" class="text-decoration-none"> AMSKU</a>
+    </div>
+</footer>
