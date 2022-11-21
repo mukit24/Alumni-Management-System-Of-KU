@@ -1,4 +1,127 @@
 {% extends 'base.html' %}
-{% block content %}
-<h2>This is home</h2>
-{% endblock content %}
+{% load static %}
+{% block home_content %}
+<section class="bg-light pt-3 pt-sm-0 text-center text-sm-start">
+    <div class="container">
+      <div class="d-sm-flex align-items-center justify-content-between">
+        <div class='pb-3'>
+          <h1>Become a <span class="text-success">KU Alumni</span></h1>
+
+          <p class="lead my-4">
+            Alumni Management System Of Khulna University is founded for efficient managing of alumnis with some outstanding and useful features.
+          </p>
+          {% if request.user.is_authenticated %}
+          <button class="btn btn-primary">Join The Community</button>
+          {% else %}
+          <a href="{% url 'account_login'%}"><button class="btn btn-primary">Join The Community</button></a>
+          {% endif %}
+          
+        </div>
+        <img class="img-fluid w-50" src={% static 'images/alumni_pic.png' %} alt="" />
+      </div>
+    </div>
+  </section>
+  <section class="bg-dark text-light p-5">
+    <div class="container d-flex justify-content-around align-items-center">
+      <div class='text-center'>
+        <i class='fa fa-users fs-1 pb-2'></i>
+        <h4>User Friendly</h4>
+      </div>
+      <div class='text-center'>
+        <i class='fa fa-gears fs-1 pb-2'></i>
+        <h4>Efficient</h4>
+      </div>
+      <div class='text-center'>
+        <i class='fa fa-graduation-cap fs-1 pb-2'></i>
+        <h4>E-Alumni</h4>
+      </div>
+      <div class='text-center'>
+        <i class='fa fa-clipboard fs-1 pb-2'></i>
+        <h4>Rich Features</h4>
+      </div>
+    </div>
+  </section>
+  <section class="bg-light p-5">
+    <div class="container">
+      <h2 class='text-center fw-bold'>What We Do</h2>
+      <p class="lead text-center text-primary">We are providing many importand features that can help alumnis, current students and the university as well.</p>
+      <hr class='text-success'>
+      <div class="row text-center pt-4 g-5">
+        <div class="col-sm-4">
+            <div class="text-center">
+              <i class="fa fa-database text-success fs-1"></i>
+              <h3 class="text-success mb-3">
+                Alumni Database
+              </h3>
+              <p class="lead">
+                Store Alumni information with various field like full name, id, batch, discipline, higher study, address etc.  
+              </p>
+              <a href="#" class="btn btn-secondary">Details</a>
+            </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <i class="fa fa-institution text-success fs-1"></i>
+            <h3 class="text-success mb-3">
+              Department Section
+            </h3>
+            <p class="lead">
+              Department Section only represents the department related information such as alumnis, charity events.  
+            </p>
+            <a href="#" class="btn btn-secondary">Details</a>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="text-center">
+            <i class="fa fa-search text-success fs-1"></i>
+            <h3 class="text-success mb-3">
+              Searching for Alumni
+            </h3>
+            <p class="lead">
+              Efficient searching mechanism is provided. Search by batch amd discipline or by any keyword.  
+            </p>
+            <a href="#" class="btn btn-secondary">Details</a>
+          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-handshake-o text-success fs-1"></i>
+          <h3 class="text-success mb-3">
+            Charity Events
+          </h3>
+          <p class="lead">
+            To help students who need money. Easy payment process and transperancy is ensured. 
+          </p>
+          <a href="#" class="btn btn-secondary">Details</a>
+        </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="text-center">
+        <i class="fa fa-file-text text-success fs-1"></i>
+        <h3 class="text-success mb-3">
+          Blog Section
+        </h3>
+        <p class="lead">
+          Post about Job Circular, Higher Study, Achievements, Educational, Research Publications etc.  
+        </p>
+        <a href="#" class="btn btn-secondary">Details</a>
+      </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="text-center">
+      <i class="fa fa-newspaper-o text-success fs-1"></i>
+      <h3 class="text-success mb-3">
+        Newsletter
+      </h3>
+      <p class="lead">
+        Important and concerning news related to varsity are provided with seasonal newsletter.  
+      </p>
+      <a href="#" class="btn btn-secondary">Details</a>
+    </div>
+</div>
+
+        
+      </div>
+    </div>
+  </section>
+{% endblock home_content %}

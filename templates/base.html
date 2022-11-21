@@ -41,6 +41,10 @@
 
 <body>
     {% include 'navbar.html' %}
+    {% with request.resolver_match.url_name as url_name %}
+    {% if url_name == 'home_view' %}
+    {% block home_content %}{% endblock home_content %}
+    {% else %}
     <div class="main_bg">
         <div class="container py-4">
             {% if request.user.is_authenticated %}
@@ -56,8 +60,11 @@
         {% endif %}
             {% block content %}{% endblock content %}
         </div>
-    {% include 'footer.html' %}
     </div>
+    {% endif %}
+    
+    {% endwith %}
+    {% include 'footer.html' %}
 
     <script src="{% static 'main.js'%}"></script>
     <!--boostrap 5 js bundle-->
