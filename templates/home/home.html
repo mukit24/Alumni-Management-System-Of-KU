@@ -2,86 +2,89 @@
 {% load static %}
 {% block home_content %}
 <section class="bg-light pt-3 pt-sm-0 text-center text-sm-start">
-    <div class="container">
-      <div class="d-sm-flex align-items-center justify-content-between">
-        <div class='pb-3'>
-          <h1>Become a <span class="text-success">KU Alumni</span></h1>
+  <div class="container">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <div class='pb-3'>
+        <h1>Become a <span class="text-success">KU Alumni</span></h1>
 
-          <p class="lead my-4">
-            Alumni Management System Of Khulna University is founded for efficient managing of alumnis with some outstanding and useful features.
+        <p class="lead my_font_p my-4">
+          Alumni Management System Of Khulna University is founded for efficient managing of alumnis with some
+          outstanding and useful features.
+        </p>
+        {% if request.user.is_authenticated %}
+        <button class="btn btn-primary">Join The Community</button>
+        {% else %}
+        <a href="{% url 'account_login'%}"><button class="btn btn-primary">Join The Community</button></a>
+        {% endif %}
+
+      </div>
+      <img class="img-fluid w-50" src={% static 'images/alumni_pic.png' %} alt="" />
+    </div>
+  </div>
+</section>
+<section class="bg-dark text-light p-5 feature">
+  <div class="container d-flex flex-wrap justify-content-around align-items-center">
+    <div class='text-center p-1'>
+      <i class='fa fa-users fs-1 pb-2'></i>
+      <h4>User Friendly</h4>
+    </div>
+    <div class='text-center p-1'>
+      <i class='fa fa-gears fs-1 pb-2'></i>
+      <h4>Efficient</h4>
+    </div>
+    <div class='text-center p-1'>
+      <i class='fa fa-graduation-cap fs-1 pb-2'></i>
+      <h4>E-Alumni</h4>
+    </div>
+    <div class='text-center p-1'>
+      <i class='fa fa-clipboard fs-1 pb-2'></i>
+      <h4>Rich Features</h4>
+    </div>
+  </div>
+</section>
+<section class="bg-light p-5">
+  <div class="container">
+    <h2 class='text-center my_font fw-bold'>What We Do</h2>
+    <p class="lead text-center text-primary">We are providing many importand features that can help alumnis, current
+      students and the university as well.</p>
+    <hr class='text-success'>
+    <div class="row feature text-center pt-4 g-5">
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-database text-success fs-1"></i>
+          <h3 class="text-success mb-3">
+            Alumni Database
+          </h3>
+          <p class="lead">
+            Store Alumni information with various field like full name, id, batch, discipline, higher study, address
+            etc.
           </p>
-          {% if request.user.is_authenticated %}
-          <button class="btn btn-primary">Join The Community</button>
-          {% else %}
-          <a href="{% url 'account_login'%}"><button class="btn btn-primary">Join The Community</button></a>
-          {% endif %}
-          
+          <a href={% url 'search:search_view' %} class="btn btn-secondary">Details</a>
         </div>
-        <img class="img-fluid w-50" src={% static 'images/alumni_pic.png' %} alt="" />
       </div>
-    </div>
-  </section>
-  <section class="bg-dark text-light p-5">
-    <div class="container d-flex justify-content-around align-items-center">
-      <div class='text-center'>
-        <i class='fa fa-users fs-1 pb-2'></i>
-        <h4>User Friendly</h4>
-      </div>
-      <div class='text-center'>
-        <i class='fa fa-gears fs-1 pb-2'></i>
-        <h4>Efficient</h4>
-      </div>
-      <div class='text-center'>
-        <i class='fa fa-graduation-cap fs-1 pb-2'></i>
-        <h4>E-Alumni</h4>
-      </div>
-      <div class='text-center'>
-        <i class='fa fa-clipboard fs-1 pb-2'></i>
-        <h4>Rich Features</h4>
-      </div>
-    </div>
-  </section>
-  <section class="bg-light p-5">
-    <div class="container">
-      <h2 class='text-center fw-bold'>What We Do</h2>
-      <p class="lead text-center text-primary">We are providing many importand features that can help alumnis, current students and the university as well.</p>
-      <hr class='text-success'>
-      <div class="row text-center pt-4 g-5">
-        <div class="col-sm-4">
-            <div class="text-center">
-              <i class="fa fa-database text-success fs-1"></i>
-              <h3 class="text-success mb-3">
-                Alumni Database
-              </h3>
-              <p class="lead">
-                Store Alumni information with various field like full name, id, batch, discipline, higher study, address etc.  
-              </p>
-              <a href="#" class="btn btn-secondary">Details</a>
-            </div>
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-institution text-success fs-1"></i>
+          <h3 class="text-success mb-3">
+            Department Section
+          </h3>
+          <p class="lead">
+            Department Section only represents the department related information such as alumnis, charity events.
+          </p>
+          <a href={% url 'home:discipline_view' %} class="btn btn-secondary">Details</a>
         </div>
-        <div class="col-sm-4">
-          <div class="text-center">
-            <i class="fa fa-institution text-success fs-1"></i>
-            <h3 class="text-success mb-3">
-              Department Section
-            </h3>
-            <p class="lead">
-              Department Section only represents the department related information such as alumnis, charity events.  
-            </p>
-            <a href="#" class="btn btn-secondary">Details</a>
-          </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-search text-success fs-1"></i>
+          <h3 class="text-success mb-3">
+            Searching for Alumni
+          </h3>
+          <p class="lead">
+            Efficient searching mechanism is provided. Search by batch amd discipline or by any keyword.
+          </p>
+          <a href={% url 'search:search_view' %} class="btn btn-secondary">Details</a>
         </div>
-        <div class="col-sm-4">
-          <div class="text-center">
-            <i class="fa fa-search text-success fs-1"></i>
-            <h3 class="text-success mb-3">
-              Searching for Alumni
-            </h3>
-            <p class="lead">
-              Efficient searching mechanism is provided. Search by batch amd discipline or by any keyword.  
-            </p>
-            <a href="#" class="btn btn-secondary">Details</a>
-          </div>
       </div>
       <div class="col-sm-4">
         <div class="text-center">
@@ -90,38 +93,110 @@
             Charity Events
           </h3>
           <p class="lead">
-            To help students who need money. Easy payment process and transperancy is ensured. 
+            To help students who need money. Easy payment process and transperancy is ensured.
           </p>
-          <a href="#" class="btn btn-secondary">Details</a>
+          <a href={% url 'charity_events:index_view' %} class="btn btn-secondary">Details</a>
         </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="text-center">
-        <i class="fa fa-file-text text-success fs-1"></i>
-        <h3 class="text-success mb-3">
-          Blog Section
-        </h3>
-        <p class="lead">
-          Post about Job Circular, Higher Study, Achievements, Educational, Research Publications etc.  
-        </p>
-        <a href="#" class="btn btn-secondary">Details</a>
       </div>
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-file-text text-success fs-1"></i>
+          <h3 class="text-success my_font mb-3">
+            Blog Section
+          </h3>
+          <p class="lead">
+            Post about Job Circular, Higher Study, Achievements, Educational, Research Publications etc.
+          </p>
+          <a href={% url 'blog:blog_index' %} class="btn btn-secondary">Details</a>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="text-center">
+          <i class="fa fa-newspaper-o text-success fs-1"></i>
+          <h3 class="text-success mb-3">
+            Newsletter
+          </h3>
+          <p class="lead">
+            Important and concerning news related to varsity are provided with seasonal newsletter.
+          </p>
+          <a href={% url 'newsletter:index' current_newsletter.id %} class="btn btn-secondary">Details</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-4">
-    <div class="text-center">
-      <i class="fa fa-newspaper-o text-success fs-1"></i>
-      <h3 class="text-success mb-3">
-        Newsletter
-      </h3>
-      <p class="lead">
-        Important and concerning news related to varsity are provided with seasonal newsletter.  
-      </p>
-      <a href="#" class="btn btn-secondary">Details</a>
-    </div>
-</div>
-
-        
+</section>
+<section class="main_bg p-3 p-sm-5">
+  <div class="container">
+    <h2 class="text-center my_font fw-bold mb-4">
+      Frequently Asked Questions
+    </h2>
+    <div class="accordion accordion-flush" id="questions">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="question_1">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne">
+            What is the Registration process?
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="question_1"
+          data-bs-parent="#questions">
+          <div class="accordion-body"><strong>It consists of two step. </strong>First, you need to sign up with your email,user name and password or you can just use google for authentication. Second, you need to verify yourself as a ku graduate. You have to complete the profile with your certificate uploaded. Then admin will send a response to you via email.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="question_2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Can I post my own writing in blog section?
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="question_2"
+          data-bs-parent="#questions">
+          <div class="accordion-body"><strong>Yes! You can.</strong>You can write anything about following topics: Job Circular, Higher Study, Achievements, Educational, Research Publications etc.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="question_3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree">
+            How do I donate in a charity event?
+          </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="question_3"
+          data-bs-parent="#questions">
+          <div class="accordion-body">An effictive payment gateway is provided to contribute money via bet banking like bkash,rocket etc, via card or via bank account. Anything you like.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="question_4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseFour">
+            Is it trustable to contribe money in charity event?
+          </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="question_4"
+          data-bs-parent="#questions">
+          <div class="accordion-body"><strong>Yes! It is completely Transparent and trustable. </strong>Every event provide authenticate info as well as the contributer list who are participating in the contributing event</div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<section class="bg-light">
+  <div class="container">
+    <div class="row gx-sm-5 align-items-center">
+      <div class="col-sm-6 pt-5 pt-sm-0 text-center">
+        <h2 class="fw-bold my_font">Contact With Us?</h2>
+      </div>
+      <div class="col-sm-6 p-5">
+        <ul class="list-group bg-primary list-group-flush">
+          <li class="list-group-item list-group-item-light"><span class="fw-bold">Main Location: </span>DSA office, Khulna University</li>
+          <li class="list-group-item list-group-item-light"><span class="fw-bold">Office Phone: </span>01980492420</li>
+          <li class="list-group-item list-group-item-light"><span class="fw-bold">Admin Name: </span>Mukit Hasan Pranto</li>
+          <li class="list-group-item list-group-item-light"><span class="fw-bold">Admin Email: </span>pranto1824@cseku.ac.bd</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock home_content %}

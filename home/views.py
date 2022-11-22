@@ -5,6 +5,8 @@ from home.models import Alumni_Profile
 from .forms import ProfileForm
 from django.db.models import Q
 from charity_events.models import Event
+from django.contrib.auth.decorators import login_required
+from home.decorators import check_profile
 
 class HomePageView(TemplateView):
     template_name='home/home.html'
@@ -58,6 +60,8 @@ def update_profile(request, id):
     }
     return render(request, "home/update_profile.html", context)
 
+@login_required
+@check_profile
 def discipline_view(request):
     discipline = request.user.alumni_profile.discipline
     total_alumni = Alumni_Profile.objects.filter(Q(discipline=discipline) & Q(is_verified=True)).count()
@@ -77,6 +81,8 @@ def discipline_view(request):
     }
     return render(request,'home/discipline_view.html',context)
 
+@login_required
+@check_profile
 def search_result_discipline(request):
     batch = request.POST['batch']
     discipline = request.user.alumni_profile.discipline
