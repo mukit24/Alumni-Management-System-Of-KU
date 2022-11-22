@@ -17,16 +17,13 @@
 
 {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a class="btn btn-primary btn-sm" href="{{ signup_url }}">sign up</a>
+of your existing third party accounts. Or, <a class="btn btn-primary btn-sm" href="{{ signup_url }}">Sign Up</a>
 for an {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 <div class="socialaccount_ballot">
 
   
   <a href="{% provider_login_url 'google' %}"><button class="btn btn-dark btn-sm "><i class="fa fa-google" style="font-size: 15px;"></i> Google Login</button></a>
-  <!-- <a href=""><button class="btn btn-primary btn-sm "><i class="fa fa-facebook-official" style="font-size: 20px;"></i> Facebook Login</button></a> -->
-  <!-- <a href="{% provider_login_url 'github' %}"><button class="btn btn-secondary btn-sm "><i class="fa fa-github" style="font-size: 20px;"></i> Github Login</button></a> -->
-
   <div class="login-or">{% trans 'or' %}</div>
 
 </div>
