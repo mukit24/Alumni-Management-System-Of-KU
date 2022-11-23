@@ -28,7 +28,7 @@ class ProfileForm(forms.ModelForm):
             "job_type": "Job Type(Optional):",
             "job_position": "Job Position(Optional):",
             "company_name": "Company Name(Optional):",
-            "higher_study": "Higher Study(Degree & University):",
+            "higher_study": "Higher Study(Degree & University)(Optional):",
             "facebook":"Facebook Link(Optional):",
             "linkdin":"Linkdin Link(Optional):",
         }

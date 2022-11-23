@@ -38,7 +38,7 @@ class Alumni_Profile(models.Model):
     job_type = models.CharField(max_length=50,blank=True)
     job_position = models.CharField(max_length=60,blank=True)
     company_name = models.CharField(max_length=60,blank=True)
-    higher_study = models.CharField(max_length=60)
+    higher_study = models.CharField(max_length=60,blank=True)
     present_address = models.CharField(max_length=60)
     present_country = models.CharField(max_length=60,choices=Country_Choices)
     parmanent_address = models.CharField(max_length=60)

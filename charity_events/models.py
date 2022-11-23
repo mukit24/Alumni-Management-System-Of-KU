@@ -26,6 +26,6 @@ class Contributer(models.Model):
     created_on = models.DateTimeField(default=datetime.now)
     event = models.ForeignKey('Event',on_delete=models.CASCADE)
     alumni = models.ForeignKey('home.Alumni_Profile',on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.alumni.full_name

@@ -49,7 +49,7 @@ def create_profile(request,id):
 
 def update_profile(request, id):
     profile = Alumni_Profile.objects.get(user=id)
-    form = ProfileForm(request.POST or None, instance=profile)
+    form = ProfileForm(request.POST or None,request.FILES or None, instance=profile)
     if request.method == 'POST':
         if form.is_valid():
             form.save()

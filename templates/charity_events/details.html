@@ -23,6 +23,7 @@
         </form>
     </div>
 </div>
+<p class='text-danger'><i class='fa fa-exclamation-triangle'></i> It uses a payment gateway(SSLCommerz Sandbox) for testing purpose. So you can contribute money with dummy information.</p>
 {% endif %}
 
 <h3 class="header text-primary">Contributers</h3>
@@ -39,7 +40,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for contributer in  event.contributer_set.all %}
+            {% for contributer in  event.contributer_set.all|dictsortreversed:"created_on" %}
             <tr>
                 <td>{{contributer.alumni.full_name}}</td>
                 <td>{{contributer.alumni.discipline}}</td>
