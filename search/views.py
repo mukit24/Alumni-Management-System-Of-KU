@@ -4,12 +4,12 @@ from django.db.models import Q
 # Create your views here.
 
 def search_view(request):
-    disciplines = list(Alumni_Profile.objects.values_list('discipline',flat=True).filter(is_verified=True))
+    disciplines = list(set(Alumni_Profile.objects.values_list('discipline',flat=True).filter(is_verified=True)))
     disciplines.sort()
     disciplines.insert(0,'All (in AMSKU)')
     print(disciplines)
     
-    batch = list(Alumni_Profile.objects.values_list('batch',flat=True).filter(is_verified=True))
+    batch = list(set(Alumni_Profile.objects.values_list('batch',flat=True).filter(is_verified=True)))
     batch.sort()
     batch.insert(0,'All (in AMSKU)')
     

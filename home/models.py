@@ -45,7 +45,7 @@ class Alumni_Profile(models.Model):
     mobile = models.CharField(max_length=60)
     facebook = models.URLField(max_length=60,blank=True)
     linkdin = models.URLField(max_length=60,blank=True)
-    about_me = models.TextField()
+    about_me = models.TextField(blank=True)
     is_verified = models.BooleanField(default=False)
     # ask_for_update_certificate = models.BooleanField(default=False)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,related_name="alumni_profile")
