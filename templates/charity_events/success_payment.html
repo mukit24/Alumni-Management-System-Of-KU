@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="header text-success">Payment is successfull</h3>
+<div class="row justify-content-center">
+    <div class="col-sm-5 text-center">
+        <div class="text-danger d-flex flex-wrap justify-content-around">
+            <h6>User: {{name}}</h6>
+        <h6>Amount: {{amount}} BDT</h6>
+        <h6>Contributed To: {{event}}</h6>
+        </div>
+        
+        <a href={% url 'charity_events:detail_view' event.id %}><button class='btn btn-success btn-sm mt-3'>Click Here To Continue</button></a>
+    </div>
+</div>
+{% endblock content%}

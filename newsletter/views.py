@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import News, News_Letter
-# Create your views here.
 
 def index_view(request, id):
     news_letters = News_Letter.objects.all()

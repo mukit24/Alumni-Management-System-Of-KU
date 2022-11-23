@@ -2,6 +2,7 @@ from django.shortcuts import render
 from home.models import Alumni_Profile
 from django.db.models import Q
 # Create your views here.
+
 def search_view(request):
     disciplines = list(Alumni_Profile.objects.values_list('discipline',flat=True).filter(is_verified=True))
     disciplines.sort()
