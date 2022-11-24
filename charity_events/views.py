@@ -13,9 +13,10 @@ sslcz = SSLCOMMERZ(settings)
 # Create your views here.
 class IndexView(ListView):
     model = Event
-    queryset = Event.objects.order_by('-running','created_on')
+    queryset = Event.objects.order_by('-running','-created_on')
     template_name = 'charity_events/index.html'
 
+@csrf_exempt
 def event_details(request,id):
     event = Event.objects.get(id=id)
     return render(request,'charity_events/details.html',{'event':event})

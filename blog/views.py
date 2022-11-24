@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 # Create your views here.
 def blog_index(request):
     form = PostForm()
-    post_list = Post.objects.all()
+    post_list = Post.objects.all().order_by('-created_on')
     paginator = Paginator(post_list,8)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
