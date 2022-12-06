@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load social_share %}
 {% block content %}
-<h4 class="header">{{news.headline}} <sub><a class='fs-6 text-decoration-none' href={% url 'newsletter:index' news.news_letter.id %}>{{news.news_letter}}</a></sub></h4>
-<h6 class='text-muted'>{{news.created_on}}</h6>
+<h4 class="header header-mbl">{{news.headline}} <sub><a class='fs-6 text-decoration-none' href={% url 'newsletter:index' news.news_letter.id %}>{{news.news_letter}}</a></sub></h4>
+<h6 class='text-muted mbl-date'>{{news.created_on}}</h6>
 <p>{{news.description|safe}}</p>
 <div class="d-flex justify-content-center pt-3">
     <h6 class='p-1 fw-bold'>Share The News With</h6>
