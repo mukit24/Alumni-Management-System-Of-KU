@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def blog_index(request):
     form = PostForm()
     post_list = Post.objects.all().order_by('-created_on')
-    paginator = Paginator(post_list,8)
+    paginator = Paginator(post_list,6)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
 
