@@ -4,6 +4,7 @@ from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from home.decorators import check_profile
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 
 # Create your views here.
 def blog_index(request):
@@ -24,12 +25,16 @@ def blog_index(request):
 def create_post(reqeust):
     if reqeust.method == 'POST':
         form = PostForm(reqeust.POST)
+        # print(form.errors)
         if form.is_valid():
             new_post = form.save(commit=False)
             new_post.author = reqeust.user.alumni_profile
             new_post.save()
             form.save_m2m()
             return redirect('blog:blog_index')
+        else:
+            error_msg = '<h3 style="color:red;text-align:center;padding:10px">Error while processing form. Please fill each Input.</h3>'
+            return HttpResponse(error_msg)
 
 def post_detials(request,id):
     post = Post.objects.get(id=id)
